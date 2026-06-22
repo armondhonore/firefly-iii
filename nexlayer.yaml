@@ -1,0 +1,38 @@
+application:
+  name: firefly-iii
+  pods:
+  - name: app
+    image: fireflyiii/core:latest
+    path: /
+    servicePorts:
+    - 8080
+    vars:
+      APP_ENV: production
+      APP_KEY: "SomeRandomStringOf32CharsExactly"
+      DB_CONNECTION: mysql
+      DB_HOST: mysql.pod
+      DB_PORT: "3306"
+      DB_DATABASE: firefly
+      DB_USERNAME: firefly
+      DB_PASSWORD: firefly
+      APP_URL: "https://relaxed-weasel-firefly-iii.cloud.nexlayer.ai"
+      TRUSTED_PROXIES: "**"
+      CACHE_DRIVER: file
+      SESSION_DRIVER: file
+    volumes:
+    - name: firefly-upload
+      mountPath: /var/www/html/storage/upload
+      size: 5Gi
+  - name: mysql
+    image: mysql:8
+    servicePorts:
+    - 3306
+    vars:
+      MYSQL_DATABASE: firefly
+      MYSQL_USER: firefly
+      MYSQL_PASSWORD: firefly
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+    - name: firefly-db
+      mountPath: /var/lib/mysql
+      size: 5Gi
