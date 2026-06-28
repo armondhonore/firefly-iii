@@ -5,7 +5,7 @@ application:
     image: fireflyiii/core:latest
     path: /
     servicePorts:
-    - 80
+    - 8080
     vars:
       APP_ENV: production
       APP_KEY: "SomeRandomStringOf32CharsExactly"
