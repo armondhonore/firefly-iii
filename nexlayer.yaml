@@ -5,16 +5,17 @@ application:
     image: fireflyiii/core:latest
     path: /
     servicePorts:
-    - 8080
+    - 80
     vars:
       APP_ENV: production
       APP_KEY: "SomeRandomStringOf32CharsExactly"
       DB_CONNECTION: mysql
-      DB_HOST: mysql.pod
+      DB_HOST: firefly-iii-mysql-service
       DB_PORT: "3306"
       DB_DATABASE: firefly
       DB_USERNAME: firefly
       DB_PASSWORD: firefly
+      DB_SOCKET: ""
       APP_URL: "https://relaxed-weasel-firefly-iii.cloud.nexlayer.ai"
       TRUSTED_PROXIES: "**"
       CACHE_DRIVER: file
